@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go-ftpbackup/args"
+	"go-ftpbackup/connect"
 	"log"
 	"os"
 )
@@ -15,5 +16,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Println("- Arguments:", argv)
+	addr := argv.Machine + connect.ConvertIntPortToString(argv.Port)
+
+	log.Println("- Address:", addr)
 }
