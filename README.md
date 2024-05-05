@@ -1,2 +1,9 @@
-# go-ftpbackup
-Program created to pull or push files to a FTP server (a.k.a. my phone) based on a auth file in the computer and a backup list file in the server
+# Go FTP Backup
+
+Program that I created to pull some files from my phone to my PC as a backup
+strategy using the FTP protocol.
+
+
+## See Also
+
+*   FTP app that I'm using: [Material Files](https://github.com/zhanghai/MaterialFiles)
