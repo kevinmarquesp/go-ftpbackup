@@ -1,14 +1,33 @@
 package args
 
-import "flag"
+import (
+	"errors"
+	"flag"
+)
 
-// "flag" wrapper that constructs the args.Args{} struct for you with some,
-// default values already setted - you need to use this default values to
-// validate the user input.
+func validateParsedValues(argv Args) error {
+	if argv.Machine == "" {
+		return errors.New("The -machine field is mandatory.")
+	}
+
+	if argv.Target == "" {
+		return errors.New("The -target field is mandatory.")
+	}
+
+	if len(argv.Sources) == 0 {
+		return errors.New("No sources to backup specified (list length 0 not allowed).")
+	}
+
+	return nil
+}
+
+// "flag" wrapper that constructs the args.Args{} struct for you with some
+// default values already setted - the default port value (-1) is not a bug,
+// it means that the user allows the program to connect without this option.
 //
 // Should be one of the first functions to be run by your app before executing
 // the main logic.
-func Parse() Args {
+func Parse() (Args, error) {
 	var sources sourcesFlag
 
 	argv := Args{}
@@ -30,5 +49,7 @@ func Parse() Args {
 
 	copy(argv.Sources, sources)
 
-	return argv
+	err := validateParsedValues(argv) // can be nil
+
+	return argv, err
 }
