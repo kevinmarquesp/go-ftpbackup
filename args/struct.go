@@ -2,7 +2,9 @@ package args
 
 import "fmt"
 
-// TODO: Document this struct.
+// This struct will be used by the application to access *all* input data that
+// the user passed. If more the user needs more data (not CLI flags only) to
+// pass, it should be acced here.
 type Args struct {
 	Machine  string
 	Port     int

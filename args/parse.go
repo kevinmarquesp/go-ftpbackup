@@ -2,7 +2,12 @@ package args
 
 import "flag"
 
-// TODO: add a documentation for this functions
+// "flag" wrapper that constructs the args.Args{} struct for you with some,
+// default values already setted - you need to use this default values to
+// validate the user input.
+//
+// Should be one of the first functions to be run by your app before executing
+// the main logic.
 func Parse() Args {
 	var sources sourcesFlag
 
