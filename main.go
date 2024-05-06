@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"go-ftpbackup/args"
 	"go-ftpbackup/connect"
@@ -9,7 +10,7 @@ import (
 )
 
 func main() {
-	argv, err := args.Parse()
+	argv, err := args.Parse(flag.CommandLine)
 	if err != nil {
 		fmt.Println(err)
 
