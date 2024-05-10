@@ -41,6 +41,11 @@ Each package file (with some exceptions for types, structs, etc.) have a
 `*_test.go` variant in the same package - the convention here is to put the
 test files along side with the source file for each package.
 
+> [!WARNING]
+> The integration tests are along side with the unit tests (bad practice, I
+> know). If you didn't start the FTP server with `docker-compose` then you
+> should expect some errors to occur.
+
 Run them all with:
 
 ```bash
@@ -52,6 +57,28 @@ Or, run the tests of a single package with, as an example:
 ```bash
 go test ./args
 ```
+
+### Integration Tests
+
+Some tests will require a local FTP server running in the `localhost:2121`
+port. To achieve that, run the `docker-compose.yaml` file before running the
+test routines.
+
+```bash
+docker-compose up --detatch
+```
+
+Once you're done with running tests, clean the used images and containers with:
+
+```bash
+docker-compose down --rmi all  # to cleanup unused containers and images
+```
+
+#### Test Code Details
+
+When creating a new integration test, add "(Integration)" at the beggining of
+the test description string -- every test should be inside the `t.Run()`
+closure.
 
 
 ## See Also
