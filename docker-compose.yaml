@@ -1,0 +1,11 @@
+services:
+  ftp:
+    image: "garethflowers/ftp-server"
+    environment:
+      FTP_USER: "kevin"
+      FTP_PASS: "kevin123"
+    ports:
+      - "2020:20/tcp"
+      - "2121:21/tcp"
+      - "40000-40009:40000-40009/tcp"
+    restart: "always"
