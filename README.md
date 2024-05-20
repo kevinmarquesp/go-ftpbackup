@@ -65,7 +65,7 @@ port. To achieve that, run the `docker-compose.yaml` file before running the
 test routines.
 
 ```bash
-docker-compose up --detatch
+docker-compose up --detach
 ```
 
 Once you're done with running tests, clean the used images and containers with:
