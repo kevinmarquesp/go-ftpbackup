@@ -8,17 +8,22 @@ import (
 )
 
 func TestGetConnection(t *testing.T) {
-	t.Run("(Integration) Should connect to the FTP server without any errors.", func(t *testing.T) {
+	t.Run("Should connect to the FTP server without any errors.", func(t *testing.T) {
+		const localhost = "localhost:2121"
+
 		done := make(chan struct{})
 
 		go func() {
-			_, err := GetConnection("localhost:2121", "kevin", "kevin123")
+			_, err := GetConnection(localhost, "kevin", "kevin123")
 			assert.NoError(t, err)
+
+			close(done)
 		}()
 
 		select {
-		case <-time.After(5 * time.Second):
+		case <-time.After(3 * time.Second):
 			t.Log("Connection timeout. Did you start the integration server?")
+			t.Fail()
 
 		case <-done:
 			t.Log("Successfully connected to the FTP server.")
